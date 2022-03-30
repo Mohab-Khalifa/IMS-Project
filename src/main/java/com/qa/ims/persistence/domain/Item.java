@@ -5,11 +5,10 @@ import java.util.Objects;
 public class Item {
 
 	// fields
-	private int id;
+	private long id;
 	private String itemName;
 	private String itemCategory;
 	private float price;
-	private int stock;
 
 	// constructor without id
 	public Item(String itemName, String itemCategory, float price, int stock) {
@@ -17,7 +16,6 @@ public class Item {
 		this.itemName = itemName;
 		this.itemCategory = itemCategory;
 		this.price = price;
-		this.stock = stock;
 	}
 
 	// constructor with id
@@ -27,15 +25,14 @@ public class Item {
 		this.itemName = itemName;
 		this.itemCategory = itemCategory;
 		this.price = price;
-		this.stock = stock;
 	}
 
 	// getters & setters
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -63,23 +60,15 @@ public class Item {
 		this.price = price;
 	}
 
-	public int getStock() {
-		return stock;
-	}
-
-	public void setStock(int stock) {
-		this.stock = stock;
-	}
-
 	@Override
 	public String toString() {
 		return "Item [id=" + id + ", itemName=" + itemName + ", itemCategory=" + itemCategory + ", price=" + price
-				+ ", stock=" + stock + "]";
+				+ "]";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, itemCategory, itemName, price, stock);
+		return Objects.hash(id, itemCategory, itemName, price);
 	}
 
 	@Override
@@ -93,7 +82,7 @@ public class Item {
 		Item other = (Item) obj;
 		return id == other.id && Objects.equals(itemCategory, other.itemCategory)
 				&& Objects.equals(itemName, other.itemName)
-				&& Float.floatToIntBits(price) == Float.floatToIntBits(other.price) && stock == other.stock;
+				&& Float.floatToIntBits(price) == Float.floatToIntBits(other.price);
 	}
 
 }
