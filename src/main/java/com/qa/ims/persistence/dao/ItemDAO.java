@@ -20,12 +20,11 @@ public class ItemDAO implements Dao<Item> {
 
 	@Override
 	public Item modelFromResultSet(ResultSet resultSet) throws SQLException {
-		int id = resultSet.getInt("id");
+		Long id = resultSet.getLong("id");
 		String itemName = resultSet.getString("item_name");
 		String itemCategory = resultSet.getString("item_category");
-		float price = resultSet.getFloat("price");
-		int stock = resultSet.getInt("stock");
-		return new Item(id, itemName, itemCategory, price, stock);
+		Float price = resultSet.getFloat("price");
+		return new Item(id, itemName, itemCategory, price);
 	}
 
 	/**
