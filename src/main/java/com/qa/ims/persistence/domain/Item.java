@@ -5,13 +5,13 @@ import java.util.Objects;
 public class Item {
 
 	// fields
-	private long id;
+	private Long id;
 	private String itemName;
 	private String itemCategory;
-	private float price;
+	private Float price;
 
 	// constructor without id
-	public Item(String itemName, String itemCategory, float price, int stock) {
+	public Item(String itemName, String itemCategory, Float price) {
 		super();
 		this.itemName = itemName;
 		this.itemCategory = itemCategory;
@@ -19,7 +19,7 @@ public class Item {
 	}
 
 	// constructor with id
-	public Item(int id, String itemName, String itemCategory, float price, int stock) {
+	public Item(Long id, String itemName, String itemCategory, Float price) {
 		super();
 		this.id = id;
 		this.itemName = itemName;
@@ -28,11 +28,11 @@ public class Item {
 	}
 
 	// getters & setters
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
