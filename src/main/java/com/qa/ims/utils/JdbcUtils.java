@@ -19,7 +19,7 @@ public class JdbcUtils {
 
 	private static JdbcUtils utils;
 
-	public static Connection getConnector() throws SQLException {
+	public static Connection getConnection() throws SQLException {
 		if (utils == null) {
 			utils = new JdbcUtils("jdbc:mysql://localhost:3306/ims?serverTimezone=UTC", "root", "Mysqlpassword123");
 		}
