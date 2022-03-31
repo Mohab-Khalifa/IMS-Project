@@ -87,7 +87,7 @@ public class ItemDAO implements Dao<Item> {
 	public Item create(Item item) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				PreparedStatement statement = connection
-						.prepareStatement("INSERT INTO item(item_name, item_category, price) VALUES (?, ?, ?)");) {
+						.prepareStatement("INSERT INTO items(item_name, item_category, price) VALUES (?, ?, ?)");) {
 			statement.setString(1, item.getItemName());
 			statement.setString(2, item.getItemCategory());
 			statement.setFloat(3, item.getPrice());
@@ -111,10 +111,11 @@ public class ItemDAO implements Dao<Item> {
 	public Item update(Item item) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				PreparedStatement statement = connection
-						.prepareStatement("UPDATE items SET item_name= ?, item_category= ? WHERE id = ?");) {
+						.prepareStatement("UPDATE items SET item_name= ?, item_category= ?, price= ? WHERE id = ?");) {
 			statement.setString(1, item.getItemName());
 			statement.setString(2, item.getItemCategory());
-			statement.setLong(3, item.getId());
+			statement.setFloat(3, item.getPrice());
+			statement.setLong(4, item.getId());
 			statement.executeUpdate();
 			return read(item.getId());
 		} catch (Exception e) {
