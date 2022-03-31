@@ -84,7 +84,7 @@ public class OrderDAO implements Dao<Order> {
 	public Order create(Order order) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				PreparedStatement statement = connection.prepareStatement(
-						"INSERT INTO orders(fk_customers_id, total_price, date_placed) VALUES (?, 0.0, ?)");) {
+						"INSERT INTO orders(fk_customers_id, total_price, date_placed) VALUES (?, ?, ?)");) {
 			statement.setLong(1, order.getFkCustomerId().getId());
 			statement.setDouble(2, order.getTotalPrice());
 			statement.setString(3, order.getDatePlaced());
