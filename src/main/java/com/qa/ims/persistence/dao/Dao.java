@@ -7,8 +7,10 @@ import java.util.List;
 public interface Dao<T> {
 
 	List<T> readAll();
-	
+
 	T read(Long id);
+
+	T readLatest();
 
 	T create(T t);
 
