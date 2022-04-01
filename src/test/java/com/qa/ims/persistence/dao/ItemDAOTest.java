@@ -23,9 +23,9 @@ public class ItemDAOTest {
 
 	@Test
 	public void readAllTEST() {
-		List<Item> ItemList = new ArrayList<>();
-		ItemList.add(new Item(1L, "PS5", "Gaming", 449.99F));
-		assertEquals(ItemList, DAO.readAll());
+		List<Item> expected = new ArrayList<>();
+		expected.add(new Item(1L, "PS5", "Gaming", 449.99F));
+		assertEquals(expected, DAO.readAll());
 	}
 
 	@Test
