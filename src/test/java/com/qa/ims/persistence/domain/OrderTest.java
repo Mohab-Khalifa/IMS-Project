@@ -44,15 +44,13 @@ public class OrderTest {
 		List<Item> listOfItems = new ArrayList<>();
 		listOfItems.add(Scooter);
 		listOfItems.add(Notebook);
-		String datePlaced = "2022/02/01";
 		double totalPrice = Scooter.getPrice() + Notebook.getPrice();
-		Order order = new Order(3L, customer, totalPrice, datePlaced, listOfItems);
+		Order order = new Order(3L, customer, totalPrice, listOfItems);
 
 		assertEquals(Long.valueOf(3), order.getId());
 		assertEquals(totalPrice, order.getTotalPrice(), 0.01);
 		assertEquals(listOfItems, order.getOrdersItems());
 		assertEquals(customer, order.getFkCustomerId());
-//		assertEquals(datePlaced, order.getDatePlaced());
 	}
 
 	@Test
@@ -63,15 +61,13 @@ public class OrderTest {
 		List<Item> listOfItems = new ArrayList<>();
 		listOfItems.add(Axe);
 		listOfItems.add(Wood);
-		String datePlaced = "2022/02/01";
 		double totalPrice = Axe.getPrice() + Wood.getPrice();
-		Order order = new Order(3L, customer, listOfItems, totalPrice, datePlaced);
+		Order order = new Order(3L, customer, listOfItems, totalPrice);
 
 		assertEquals(Long.valueOf(3), order.getId());
 		assertEquals(totalPrice, order.getTotalPrice(), 0.01);
 		assertEquals(listOfItems, order.getOrdersItems());
 		assertEquals(customer, order.getFkCustomerId());
-//		assertEquals(datePlaced, order.getDatePlaced());
 	}
 
 	@Test
@@ -88,9 +84,8 @@ public class OrderTest {
 //		List<Item> ListOfItems = new ArrayList<>();
 //		ListOfItems.add(Scooter);
 //		ListOfItems.add(Notebook);
-//		String datePlaced = "2022/02/01";
 //		double TotalPrice = Scooter.getPrice() + Notebook.getPrice();
-//		Order order = new Order(3L, customer, TotalPrice, datePlaced, ListOfItems);
+//		Order order = new Order(3L, customer, TotalPrice, ListOfItems);
 //		order.setTotalPrice(200D);
 //
 //		assertEquals(200D, order.getTotalPrice());
@@ -104,13 +99,13 @@ public class OrderTest {
 		List<Item> ListOfItems = new ArrayList<>();
 		ListOfItems.add(Scooter);
 		ListOfItems.add(Notebook);
-		String datePlaced = "2022/02/01";
 		double totalPrice = Scooter.getPrice() + Notebook.getPrice();
-		Order order = new Order(3L, customer, totalPrice, datePlaced, ListOfItems);
+		Order order = new Order(3L, customer, totalPrice, ListOfItems);
 
-		assertEquals("Order [id=3, [fkCustomerId=id:3 first name:Jake surname:Peralta, "
-				+ "totalPrice=21.489999771118164, datePlaced=null, "
-				+ "ordersItems=[Item [id=3, itemName=Scooter, itemCategory=Toys, price=19.99], "
-				+ "Item [id=4, itemName=Notebook, itemCategory=Stationaries, price=1.5]]]]", order.toString());
+		assertEquals(
+				"Order [id=3, [fkCustomerId=id:3 first name:Jake surname:Peralta, " + "totalPrice=21.489999771118164, "
+						+ "ordersItems=[Item [id=3, itemName=Scooter, itemCategory=Toys, price=19.99], "
+						+ "Item [id=4, itemName=Notebook, itemCategory=Stationaries, price=1.5]]]]",
+				order.toString());
 	}
 }
