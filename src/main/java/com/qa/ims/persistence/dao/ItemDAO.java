@@ -49,6 +49,7 @@ public class ItemDAO implements Dao<Item> {
 		return new ArrayList<>();
 	}
 
+	@Override
 	public Item readLatest() {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				Statement statement = connection.createStatement();
