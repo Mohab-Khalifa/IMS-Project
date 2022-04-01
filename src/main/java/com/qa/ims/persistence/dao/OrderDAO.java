@@ -86,7 +86,6 @@ public class OrderDAO implements Dao<Order> {
 				PreparedStatement statement = connection
 						.prepareStatement("INSERT INTO orders(fk_customers_id, total_price) VALUES (?, 0.0)");) {
 			statement.setLong(1, order.getFkCustomerId().getId());
-			statement.setDouble(2, order.getTotalPrice());
 			statement.executeUpdate();
 			return readLatest();
 		} catch (Exception e) {
@@ -180,7 +179,6 @@ public class OrderDAO implements Dao<Order> {
 	public Order modelFromResultSet(ResultSet resultSet) throws SQLException {
 		Long id = resultSet.getLong("id");
 		Long fk_customers_id = resultSet.getLong("fk_customers_id");
-//		Double totalPrice = resultSet.getDouble("total_price");
 		List<Item> itemList = getItemsInOrder(id);
 		double TotalPrice = calculateTotalOrderCost(id);
 		Customer customer = customerDAO.read(fk_customers_id);
