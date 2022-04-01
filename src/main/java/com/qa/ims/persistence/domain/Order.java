@@ -9,21 +9,20 @@ public class Order {
 	private Long id;
 	private Customer fkCustomerId;
 	private Double totalPrice;
-	private String datePlaced;
 	private List<Item> ordersItems = new ArrayList<>();
 
 	public Order() {
 
 	}
 
-	public Order(Customer fkCustomerId, Double totalPrice, String datePlaced, List<Item> ordersItems) {
+	public Order(Customer fkCustomerId, Double totalPrice, List<Item> ordersItems) {
 		super();
 		this.fkCustomerId = fkCustomerId;
 		this.totalPrice = totalPrice;
 		this.ordersItems = ordersItems;
 	}
 
-	public Order(Long id, Customer fkCustomerId, List<Item> ordersItems, Double totalPrice, String datePlaced) {
+	public Order(Long id, Customer fkCustomerId, List<Item> ordersItems, Double totalPrice) {
 		super();
 		this.id = id;
 		this.fkCustomerId = fkCustomerId;
@@ -31,7 +30,7 @@ public class Order {
 		this.ordersItems = ordersItems;
 	}
 
-	public Order(Long id, Customer fkCustomerId, Double totalPrice, String datePlaced, List<Item> ordersItems) {
+	public Order(Long id, Customer fkCustomerId, Double totalPrice, List<Item> ordersItems) {
 		super();
 		this.id = id;
 		this.fkCustomerId = fkCustomerId;
@@ -72,14 +71,6 @@ public class Order {
 		this.totalPrice = totalPrice;
 	}
 
-	public String getDatePlaced() {
-		return datePlaced;
-	}
-
-	public void setDatePlaced(String datePlaced) {
-		this.datePlaced = datePlaced;
-	}
-
 	public List<Item> getOrdersItems() {
 		return ordersItems;
 	}
@@ -90,13 +81,13 @@ public class Order {
 
 	@Override
 	public String toString() {
-		return "Order [id=" + id + ", fkCustomerId=" + fkCustomerId + ", totalPrice=" + totalPrice + ", datePlaced="
-				+ datePlaced + ", ordersItems=" + ordersItems + "]";
+		return "Order [id=" + id + ", fkCustomerId=" + fkCustomerId + ", totalPrice=" + totalPrice + ", ordersItems="
+				+ ordersItems + "]";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(datePlaced, fkCustomerId, id, ordersItems, totalPrice);
+		return Objects.hash(fkCustomerId, id, ordersItems, totalPrice);
 	}
 
 	@Override
@@ -108,9 +99,8 @@ public class Order {
 		if (getClass() != obj.getClass())
 			return false;
 		Order other = (Order) obj;
-		return Objects.equals(datePlaced, other.datePlaced) && Objects.equals(fkCustomerId, other.fkCustomerId)
-				&& Objects.equals(id, other.id) && Objects.equals(ordersItems, other.ordersItems)
-				&& Objects.equals(totalPrice, other.totalPrice);
+		return Objects.equals(fkCustomerId, other.fkCustomerId) && Objects.equals(id, other.id)
+				&& Objects.equals(ordersItems, other.ordersItems) && Objects.equals(totalPrice, other.totalPrice);
 	}
 
 }
