@@ -11,20 +11,20 @@ DROP TABLE IF EXISTS orders;
 DROP TABLE IF EXISTS items;
 DROP TABLE IF EXISTS customers;
 
-CREATE TABLE IF NOT EXISTS `ims`.`customers` (
+CREATE TABLE IF NOT EXISTS `customers` (
     `id` BIGINT AUTO_INCREMENT,
     `first_name` VARCHAR(40) NOT NULL,
     `surname` VARCHAR(40) NOT NULL,
     PRIMARY KEY (`id`)
 );
 
-INSERT INTO `ims`.`customers` (`first_name`, `surname`) VALUES ('Harry', 'Maguire');
-INSERT INTO `ims`.`customers` (`first_name`, `surname`) VALUES ('Terrence', 'Crawford');
-INSERT INTO `ims`.`customers` (`first_name`, `surname`) VALUES ('Tyler', 'Perry');
+INSERT INTO `customers` (`first_name`, `surname`) VALUES ('Harry', 'Maguire');
+INSERT INTO `customers` (`first_name`, `surname`) VALUES ('Terrence', 'Crawford');
+INSERT INTO `customers` (`first_name`, `surname`) VALUES ('Tyler', 'Perry');
 
 SELECT * FROM customers;
 
-CREATE TABLE IF NOT EXISTS `ims`.`items` (
+CREATE TABLE IF NOT EXISTS `items` (
 	`id` BIGINT AUTO_INCREMENT,
 	`item_name` VARCHAR(40) NOT NULL,
 	`item_category` VARCHAR(40) NOT NULL,
@@ -32,13 +32,13 @@ CREATE TABLE IF NOT EXISTS `ims`.`items` (
 	PRIMARY KEY (`id`)
 );
 
-INSERT INTO `ims`.`items` (`item_name`, `item_category`, `price`) VALUES ('PS5', 'Gaming', '500');
-INSERT INTO `ims`.`items` (`item_name`, `item_category`, `price`) VALUES ('Pencil', 'Stationary', '1');
-INSERT INTO `ims`.`items` (`item_name`, `item_category`, `price`) VALUES ('Scooter', 'Toys', '19.99');
+INSERT INTO `items` (`item_name`, `item_category`, `price`) VALUES ('PS5', 'Gaming', '500');
+INSERT INTO `items` (`item_name`, `item_category`, `price`) VALUES ('Pencil', 'Stationary', '1');
+INSERT INTO `items` (`item_name`, `item_category`, `price`) VALUES ('Scooter', 'Toys', '19.99');
 
 SELECT * FROM items;
 
-CREATE TABLE IF NOT EXISTS `ims`.`orders` (
+CREATE TABLE IF NOT EXISTS `orders` (
 	`id` BIGINT AUTO_INCREMENT,
 	`fk_customers_id` BIGINT NOT NULL,
 	`total_price` DECIMAL(6,2) NOT NULL,
@@ -46,13 +46,13 @@ CREATE TABLE IF NOT EXISTS `ims`.`orders` (
 	FOREIGN KEY (`fk_customers_id`) REFERENCES customers(`id`)
 );
 
-INSERT INTO `ims`.`orders` (`fk_customers_id`, `total_price`) VALUES ('1', '200');
-INSERT INTO `ims`.`orders` (`fk_customers_id`, `total_price`) VALUES ('2', '34.99');
-INSERT INTO `ims`.`orders` (`fk_customers_id`, `total_price`) VALUES ('3', '5');
+INSERT INTO `orders` (`fk_customers_id`, `total_price`) VALUES ('1', '200');
+INSERT INTO `orders` (`fk_customers_id`, `total_price`) VALUES ('2', '34.99');
+INSERT INTO `orders` (`fk_customers_id`, `total_price`) VALUES ('3', '5');
 
 SELECT * FROM orders;
 
-CREATE TABLE IF NOT EXISTS `ims`.`orders_items` (
+CREATE TABLE IF NOT EXISTS `orders_items` (
 	`fk_orders_id` BIGINT NOT NULL,
 	`fk_items_id` BIGINT NOT NULL,
 	`quantity` INT DEFAULT 1,
@@ -61,9 +61,10 @@ CREATE TABLE IF NOT EXISTS `ims`.`orders_items` (
 	FOREIGN KEY (`fk_items_id`) REFERENCES items(`id`)
 );
 
-INSERT INTO `ims`.`orders_items` (`fk_orders_id`, `fk_items_id`) VALUES ('1', '1');
+INSERT INTO `orders_items` (`fk_orders_id`, `fk_items_id`) VALUES ('1', '1');
 
 SELECT * FROM orders_items;
+
 
 SELECT `orders`.`id`, `customers`.`first_name`, `customers`.`surname`, `orders_items`.`fk_items_id`, `items`.`item_name`
 FROM `orders` JOIN `customers` ON `orders`.`fk_customers_id`=`customers`.`id` 
