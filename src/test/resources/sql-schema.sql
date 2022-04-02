@@ -18,9 +18,9 @@ CREATE TABLE IF NOT EXISTS `ims`.`customers` (
     PRIMARY KEY (`id`)
 );
 
-INSERT INTO `customers` (`first_name`, `surname`) VALUES ('Harry', 'Maguire');
-INSERT INTO `customers` (`first_name`, `surname`) VALUES ('Terrence', 'Crawford');
-INSERT INTO `customers` (`first_name`, `surname`) VALUES ('Tyler', 'Perry');
+INSERT INTO `ims`.`customers` (`first_name`, `surname`) VALUES ('Harry', 'Maguire');
+INSERT INTO `ims`.`customers` (`first_name`, `surname`) VALUES ('Terrence', 'Crawford');
+INSERT INTO `ims`.`customers` (`first_name`, `surname`) VALUES ('Tyler', 'Perry');
 
 SELECT * FROM customers;
 
@@ -32,9 +32,9 @@ CREATE TABLE IF NOT EXISTS `ims`.`items` (
 	PRIMARY KEY (`id`)
 );
 
-INSERT INTO `items` (`item_name`, `item_category`, `price`) VALUES ('PS5', 'Gaming', '500');
-INSERT INTO `items` (`item_name`, `item_category`, `price`) VALUES ('Pencil', 'Stationary', '1');
-INSERT INTO `items` (`item_name`, `item_category`, `price`) VALUES ('Scooter', 'Toys', '19.99');
+INSERT INTO `ims`.`items` (`item_name`, `item_category`, `price`) VALUES ('PS5', 'Gaming', '500');
+INSERT INTO `ims`.`items` (`item_name`, `item_category`, `price`) VALUES ('Pencil', 'Stationary', '1');
+INSERT INTO `ims`.`items` (`item_name`, `item_category`, `price`) VALUES ('Scooter', 'Toys', '19.99');
 
 SELECT * FROM items;
 
@@ -46,9 +46,9 @@ CREATE TABLE IF NOT EXISTS `ims`.`orders` (
 	FOREIGN KEY (`fk_customers_id`) REFERENCES customers(`id`)
 );
 
-INSERT INTO `orders` (`fk_customers_id`, `total_price`) VALUES ('1', '200');
-INSERT INTO `orders` (`fk_customers_id`, `total_price`) VALUES ('2', '34.99');
-INSERT INTO `orders` (`fk_customers_id`, `total_price`) VALUES ('3', '5');
+INSERT INTO `ims`.`orders` (`fk_customers_id`, `total_price`) VALUES ('1', '200');
+INSERT INTO `ims`.`orders` (`fk_customers_id`, `total_price`) VALUES ('2', '34.99');
+INSERT INTO `ims`.`orders` (`fk_customers_id`, `total_price`) VALUES ('3', '5');
 
 SELECT * FROM orders;
 
@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `ims`.`orders_items` (
 	FOREIGN KEY (`fk_items_id`) REFERENCES items(`id`)
 );
 
-INSERT INTO `orders_items` (`fk_orders_id`, `fk_items_id`) VALUES ('1', '1');
+INSERT INTO `ims`.`orders_items` (`fk_orders_id`, `fk_items_id`) VALUES ('1', '1');
 
 SELECT * FROM orders_items;
 
