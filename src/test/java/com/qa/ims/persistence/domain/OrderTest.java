@@ -68,6 +68,38 @@ public class OrderTest {
 		assertEquals(customer, order.getFkCustomerId());
 	}
 
+	@Test
+	public void sixthConstructorTest() {
+		Customer customer = new Customer("Mesut", "Ozil");
+		Item Axe = new Item("Axe", "Gardening", 9.99F);
+		Item Wood = new Item(3L, "Axe", "Gardening", 9.99F);
+		List<Item> listOfItems = new ArrayList<>();
+		listOfItems.add(Axe);
+		listOfItems.add(Wood);
+		double totalPrice = Axe.getPrice() + Wood.getPrice();
+		Order order = new Order(3L, customer, totalPrice);
+
+		assertEquals(Long.valueOf(3), order.getId());
+		assertEquals(totalPrice, order.getTotalPrice(), 0.01);
+		assertEquals(customer, order.getFkCustomerId());
+	}
+
+	@Test
+	public void seventhConstructorTest() {
+		Customer customer = new Customer("Mesut", "Ozil");
+		Item Axe = new Item("Axe", "Gardening", 9.99F);
+		Item Wood = new Item(3L, "Axe", "Gardening", 9.99F);
+		List<Item> listOfItems = new ArrayList<>();
+		listOfItems.add(Axe);
+		listOfItems.add(Wood);
+		double totalPrice = Axe.getPrice() + Wood.getPrice();
+		Order order = new Order(customer, totalPrice, listOfItems);
+
+		assertEquals(totalPrice, order.getTotalPrice(), 0.01);
+		assertEquals(listOfItems, order.getOrdersItems());
+		assertEquals(customer, order.getFkCustomerId());
+	}
+
 //	@Test
 //	public void equalsTEST() {
 //		EqualsVerifier.simple().forClass(Order.class).verify();
@@ -98,11 +130,10 @@ public class OrderTest {
 		ListOfItems.add(Scooter);
 		ListOfItems.add(Notebook);
 		double totalPrice = Scooter.getPrice() + Notebook.getPrice();
-		Order order = new Order(3L, customer, totalPrice, ListOfItems);
+		Order order = new Order(1L, customer, totalPrice, ListOfItems);
 
-		assertEquals("Order [id=1, [fkCustomerId=id:3 first name:Jake surname:Peralta, "
-				+ "totalPrice=21.5, ordersItems=[Item [id=3, itemName=Scooter, "
-				+ "itemCategory=Toys, price=20.0], Item [id=4, itemName=Notebook, "
-				+ "itemCategory=Stationaries, price=1.5]]]]", order.toString());
+		assertEquals(
+				"Order [id=1, fkCustomerId=id:1 first name:Jake surname:Peralta, totalPrice=21.5, ordersItems=[Item [id=3, itemName=Scooter, itemCategory=Toys, price=20.0], Item [id=4, itemName=Notebook, itemCategory=Stationaries, price=1.5]]]",
+				order.toString());
 	}
 }

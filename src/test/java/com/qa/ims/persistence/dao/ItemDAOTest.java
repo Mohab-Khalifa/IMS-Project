@@ -38,13 +38,14 @@ public class ItemDAOTest {
 	@Test
 	public void readTEST() {
 		final long ID = 1L;
-		assertEquals(new Item(ID, "XBOX ONE", "Gaming", 449.99F), DAO.read(ID));
+		assertEquals(new Item(ID, "PS5", "Gaming", 449.99F), DAO.read(ID));
 		assertEquals(null, DAO.read(null));
 	}
 
 	@Test
 	public void deleteTEST() {
 		assertEquals(1, DAO.delete(1L));
+		assertEquals(0, DAO.delete(0L));
 	}
 
 //	@Test
