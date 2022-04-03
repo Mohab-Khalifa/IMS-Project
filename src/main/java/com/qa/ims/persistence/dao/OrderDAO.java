@@ -128,10 +128,21 @@ public class OrderDAO implements Dao<Order> {
 	}
 
 	@Override
-	public int delete(long id) {
+	public int delete(long orderId) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				Statement statement = connection.createStatement();) {
-			return statement.executeUpdate("DELETE FROM orders_items WHERE fk_orders_id = " + id);
+			return statement.executeUpdate("DELETE FROM orders_items WHERE fk_orders_id = " + orderId);
+		} catch (Exception e) {
+			LOGGER.debug(e);
+			LOGGER.error(e.getMessage());
+		}
+		return 0;
+	}
+
+	public int deleteOrdersItems(long orderID) {
+		try (Connection connection = DBUtils.getInstance().getConnection();
+				Statement statement = connection.createStatement();) {
+			return statement.executeUpdate("DELETE FROM orders_items WHERE fk_orders_id = " + orderID);
 		} catch (Exception e) {
 			LOGGER.debug(e);
 			LOGGER.error(e.getMessage());
